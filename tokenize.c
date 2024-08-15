@@ -15,14 +15,14 @@ char **tokenize(char *src_str, const char *separator)
 	int i = 0;
 	int token_count = 0;
 	char **dest_str_arr = NULL;
-	char *token;
+	char *token, *temp_str;
 
 	/* Check for NULL passed arguments */
 	if (src_str == NULL || separator == NULL)
 		return (NULL);
 
 	/* Calculate the number of tokens */
-	char *temp_str = strdup(src_str);
+	temp_str = strdup(src_str);
 	token = strtok(temp_str, separator);
 	while (token != NULL)
 	{
@@ -44,7 +44,7 @@ char **tokenize(char *src_str, const char *separator)
 		i++;
 		token = strtok(NULL, separator);
 	}
-	dest_str_arr[i] = NULL;  // Null-terminate the array
+	dest_str_arr[i] = NULL;
 
 	return (dest_str_arr);
 }
