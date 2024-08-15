@@ -1,12 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-<<<<<<< Updated upstream
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
-=======
 #include <unistd.h>    /* for access, chdir, close, execve, _exit, fork, getpid
 			  , isatty, read, write */
 #include <dirent.h>    /* for closedir, opendir, readdir */
@@ -21,6 +15,5 @@
 #include <string.h>    /* for strtok and more full library allowed */
 
 char **tokenize(char *src_str, const char *separator);
->>>>>>> Stashed changes
 
 #endif
