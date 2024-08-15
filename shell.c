@@ -34,13 +34,11 @@ int main(void)
 		if (argv == NULL)
 		{
 			free(buf);
-			free(argv);
 			return (0);
 		}
 
 		execute(argv);
 
-		free(buf);
 		free(argv);
 
 	}
