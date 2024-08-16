@@ -18,6 +18,7 @@ void execute(char **argv)
 	if (argv == NULL)
 		return;
 
+	/* Fork a child process to execute new program */
 	pid = fork();
 
 	if (pid == -1)
@@ -35,6 +36,7 @@ void execute(char **argv)
 		}
 	}
 
+	/* parent process wait child end of process */
 	else
 	{
 		wait(&status);
