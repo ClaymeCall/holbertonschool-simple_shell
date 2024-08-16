@@ -1,11 +1,13 @@
 #include "main.h"
+#include <cerrno>
+#include <cstdio>
 #include <stdio.h>
 #include <unistd.h>
 
 /**
 * main - main function for simple shell
 *
-* Return: Void
+* Return: Return 0 on succes or -1 on failure
 */
 int main(void)
 {
@@ -20,6 +22,13 @@ int main(void)
 
 		buf_len = getline(&buf, &buf_size, stdin);
 
+		if (buf_len == -1)
+		{
+			perror("getline");
+			free (buf);
+			return (1);
+		}
+
 		if (buf_len == EOF)
 		{
 			free(buf);
@@ -31,16 +40,25 @@ int main(void)
 
 		argv = tokenize(buf, " ");
 
+		if (strcmp(argv[0], "exit") == 0)
+		{
+			free(buf);
+			free (argv);
+			return (0);
+		}
+
 		if (argv == NULL)
 		{
 			free(buf);
 			return (0);
 		}
 
-		execute(argv);
-
+		if (execute(argv) == -1)
+		{
+			perror("not found");
+			return (1);
+		}
 		free(argv);
-
 	}
 	return (0);
 }
