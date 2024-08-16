@@ -3,8 +3,8 @@
 #include <stdlib.h>
 
 /**
- * tokenize - Split a string into token substrings.
- * @src_str: Sources string to split into tokens.
+ * tokenize - Splits a string into token substrings.
+ * @src_str: Source string to split into tokens.
  * @separator: Separator to use as splitter.
  *
  * Return: Pointer to dest array of strings.

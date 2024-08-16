@@ -3,9 +3,9 @@
 #include <unistd.h>
 
 /**
-* main - main function for simple shell
+* main - entry point function for simple shell.
 *
-* Return: Return 0 on succes or -1 on failure
+* Return: 0 on success, -1 on failure.
 */
 int main(void)
 {
@@ -57,7 +57,7 @@ int main(void)
 
 		if (execute(argv) == -1)
 		{
-			perror("not found");
+			perror("Function not found");
 			return (1);
 		}
 		free(argv);

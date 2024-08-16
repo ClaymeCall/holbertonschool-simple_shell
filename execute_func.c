@@ -3,12 +3,11 @@
 #include <unistd.h>
 
 /**
- * execute - Execute the command line pass by stdin.
- * @argv: Command pass by stdin.
+ * execute - Execute the command line passed by stdin.
+ * @argv: Command passed by stdin.
  *
- * Return : 0 on succes -1 on failure.
+ * Return : 0 on success, -1 on failure.
  */
-
 int execute(char **argv)
 {
 	int status;
@@ -18,7 +17,7 @@ int execute(char **argv)
 	if (argv == NULL)
 		return (-1);
 
-	/* Fork a child process to execute new program */
+	/* Fork current process into child process to execute new program */
 	pid = fork();
 
 	if (pid == -1)
@@ -36,10 +35,9 @@ int execute(char **argv)
 		}
 	}
 
-	/* parent process wait child end of process */
+	/* Parent process waits for child process end */
 	else
-	{
 		wait(&status);
-	}
+
 	return (0);
 }
