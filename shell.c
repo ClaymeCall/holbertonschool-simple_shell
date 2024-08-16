@@ -1,6 +1,4 @@
 #include "main.h"
-#include <cerrno>
-#include <cstdio>
 #include <stdio.h>
 #include <unistd.h>
 
@@ -22,10 +20,11 @@ int main(void)
 
 		buf_len = getline(&buf, &buf_size, stdin);
 
+		/* check if getline fail and print error */
 		if (buf_len == -1)
 		{
 			perror("getline");
-			free (buf);
+			free(buf);
 			return (1);
 		}
 
@@ -35,17 +34,20 @@ int main(void)
 			exit(0);
 		}
 
+		/* replace \n with \0 for properly terminate the string*/
 		if (buf[buf_len - 1] == '\n')
 			buf[buf_len - 1] = '\0';
 
 		argv = tokenize(buf, " ");
 
+		/* this gonna go in built_in_func
 		if (strcmp(argv[0], "exit") == 0)
 		{
 			free(buf);
 			free (argv);
 			return (0);
 		}
+		*/
 
 		if (argv == NULL)
 		{
