@@ -5,7 +5,7 @@
 /**
 * main - main function for simple shell
 *
-* Return: Void
+* Return: Return 0 on succes or -1 on failure
 */
 int main(void)
 {
@@ -20,16 +20,34 @@ int main(void)
 
 		buf_len = getline(&buf, &buf_size, stdin);
 
+		/* check if getline fail and print error */
+		if (buf_len == -1)
+		{
+			perror("getline");
+			free(buf);
+			return (1);
+		}
+
 		if (buf_len == EOF)
 		{
 			free(buf);
 			exit(0);
 		}
 
+		/* replace \n with \0 for properly terminate the string*/
 		if (buf[buf_len - 1] == '\n')
 			buf[buf_len - 1] = '\0';
 
 		argv = tokenize(buf, " ");
+
+		/* this gonna go in built_in_func
+		if (strcmp(argv[0], "exit") == 0)
+		{
+			free(buf);
+			free (argv);
+			return (0);
+		}
+		*/
 
 		if (argv == NULL)
 		{
@@ -37,10 +55,12 @@ int main(void)
 			return (0);
 		}
 
-		execute(argv);
-
+		if (execute(argv) == -1)
+		{
+			perror("not found");
+			return (1);
+		}
 		free(argv);
-
 	}
 	return (0);
 }
