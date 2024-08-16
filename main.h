@@ -16,5 +16,6 @@
 
 int execute(char **argv);
 char **tokenize(char *src_str, const char *separator);
+void lookup_path(const char *func);
 
 #endif
