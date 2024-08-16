@@ -14,7 +14,7 @@
 #include <sys/wait.h>  /* for wait, waitpid, wait3, wait4 */
 #include <string.h>    /* for strtok and more full library allowed */
 
-void execute(char **argv);
+int execute(char **argv);
 char **tokenize(char *src_str, const char *separator);
 
 #endif

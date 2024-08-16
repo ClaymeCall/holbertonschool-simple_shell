@@ -3,20 +3,20 @@
 #include <unistd.h>
 
 /**
- * execute - Execute the command line pass by stdin
- * @argv: Command pass by stdin
+ * execute - Execute the command line pass by stdin.
+ * @argv: Command pass by stdin.
  *
- * Return : void
+ * Return : 0 on succes -1 on failure.
  */
 
-void execute(char **argv)
+int execute(char **argv)
 {
 	int status;
 	char *env[] = {NULL};
 	pid_t pid;
 
 	if (argv == NULL)
-		return;
+		return (-1);
 
 	/* Fork a child process to execute new program */
 	pid = fork();
@@ -24,7 +24,7 @@ void execute(char **argv)
 	if (pid == -1)
 	{
 		perror("Error");
-		return;
+		return (-1);
 	}
 
 	if (pid == 0)
@@ -32,7 +32,7 @@ void execute(char **argv)
 		if (execve(argv[0], argv, env) == -1)
 		{
 			perror("Execution failed");
-			_exit(EXIT_FAILURE);
+			_exit(-1);
 		}
 	}
 
@@ -41,4 +41,5 @@ void execute(char **argv)
 	{
 		wait(&status);
 	}
+	return (0);
 }
