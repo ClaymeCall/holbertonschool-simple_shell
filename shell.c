@@ -37,9 +37,8 @@ int main(void)
 		if (buf_len == 1 && buf[0] == '\n')
 			continue;
 
-		/* if (space_checker(buf, buf_len) == 0)
+		if (space_checker(buf, buf_len) == 0)
 			continue;
-			*/
 
 		argv = tokenize(buf, " ");
 
