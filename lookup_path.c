@@ -42,7 +42,7 @@ char *lookup_path(const char *func)
 
 	if (path == NULL)
 	{
-		printf("PATH not found\n");
+		printf("PATH environment variable not found\n");
 		return (NULL);
 	}
 
@@ -71,5 +71,6 @@ char *lookup_path(const char *func)
 		token = strtok(NULL, ":");
 	}
 
+	printf("%s: not found", func);
 	return (NULL);
 }
