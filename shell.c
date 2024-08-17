@@ -23,32 +23,27 @@ int main(void)
 		if (buf_len == EOF)
 		{
 			free(buf);
+			printf("\n");
 			exit(0);
 		}
 
-		/* Check if getline fails and handles error */
 		if (buf_len == -1)
 		{
-			perror("getline function error");
+			perror("getline");
 			free(buf);
 			return (1);
 		}
 
-		/* Replace \n with \0 to properly terminate the string*/
-		if (buf[buf_len - 1] == '\n')
-			buf[buf_len - 1] = '\0';
+		if (buf_len == 1 && buf[0] == '\n')
+			continue;
+
+		/* if (space_checker(buf, buf_len) == 0)
+			continue;
+			*/
 
 		argv = tokenize(buf, " ");
 
-		/* this gonna go in built_in_func
-		if (strcmp(argv[0], "exit") == 0)
-		{
-			free(buf);
-			free (argv);
-			return (0);
-		}
-		*/
-
+		/* maybe do this in tokenize at line for dest_src_str */
 		if (argv == NULL)
 		{
 			free(buf);
