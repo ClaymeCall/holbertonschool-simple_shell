@@ -74,4 +74,4 @@ Our testing process is designed to ensure the robustness and correctness of the 
    - Each test is designed to validate the correct functionality of individual components like tokenization, command execution, path searching, and error handling.
 
 ## Authors
-C#24 : [Mael EZANIC](https://github.com/Mezanic) | [Clément CALLEJON](https://github.com/ClaymeCall))
+C#24 : [Mael EZANIC](https://github.com/Mezanic) | [Clément CALLEJON](https://github.com/ClaymeCall
