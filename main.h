@@ -12,8 +12,11 @@
 #include <fcntl.h>     /* for open */
 #include <signal.h>    /* for kill, signal */
 #include <sys/wait.h>  /* for wait, waitpid, wait3, wait4 */
-#include <string.h>    /* for strtok and more full library allowed */
+#include <string.h>
 
+int execute(char **argv);
 char **tokenize(char *src_str, const char *separator);
+char *lookup_path(const char *func);
+char *get_path_env(void);
 
 #endif

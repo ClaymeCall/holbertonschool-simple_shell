@@ -3,9 +3,9 @@
 #include <unistd.h>
 
 /**
-* main - main function for simple shell
+* main - entry point function for simple shell.
 *
-* Return: Return 0 on succes or -1 on failure
+* Return: 0 on success, -1 on failure.
 */
 int main(void)
 {
@@ -20,21 +20,21 @@ int main(void)
 
 		buf_len = getline(&buf, &buf_size, stdin);
 
-		/* check if getline fail and print error */
-		if (buf_len == -1)
-		{
-			perror("getline");
-			free(buf);
-			return (1);
-		}
-
 		if (buf_len == EOF)
 		{
 			free(buf);
 			exit(0);
 		}
 
-		/* replace \n with \0 for properly terminate the string*/
+		/* Check if getline fails and handles error */
+		if (buf_len == -1)
+		{
+			perror("getline function error");
+			free(buf);
+			return (1);
+		}
+
+		/* Replace \n with \0 to properly terminate the string*/
 		if (buf[buf_len - 1] == '\n')
 			buf[buf_len - 1] = '\0';
 
@@ -57,7 +57,7 @@ int main(void)
 
 		if (execute(argv) == -1)
 		{
-			perror("not found");
+			perror("Function not found");
 			return (1);
 		}
 		free(argv);
