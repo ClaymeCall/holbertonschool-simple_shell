@@ -1,6 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include <stdio.h>
 #include <unistd.h>    /* for access, chdir, close, execve, _exit, fork, getpid
 			  , isatty, read, write */
 #include <dirent.h>    /* for closedir, opendir, readdir */
@@ -18,5 +19,6 @@ int execute(char **argv);
 char **tokenize(char *src_str, const char *separator);
 char *lookup_path(const char *func);
 char *get_path_env(void);
+int space_checker(char *buf, ssize_t buf_len);
 
 #endif
