@@ -40,14 +40,16 @@ int main(void)
 
 		argv = tokenize(buf, " ");
 
-		/* this gonna go in built_in_func
-		if (strcmp(argv[0], "exit") == 0)
-		{
-			free(buf);
-			free (argv);
-			return (0);
-		}
-		*/
+		/**
+		 *
+		 * this gonna go in built_in_func
+		 * if (strcmp(argv[0], "exit") == 0)
+		 * {
+		 *	free(buf);
+		 *	free (argv);
+		 *	return (0);
+		 * }
+		 */
 
 		if (argv == NULL)
 		{
