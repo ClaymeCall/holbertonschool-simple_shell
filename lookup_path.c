@@ -3,8 +3,6 @@
 #include <unistd.h>
 #include <string.h>
 
-extern char **environ;
-
 /**
  * get_path_env - Searches for the PATH environment variable.
  *
@@ -14,7 +12,7 @@ char *get_path_env(void)
 {
 	char *path = NULL;
 	int i = 0;
-	
+
 	while (environ[i] != NULL)
 	{
 		if (strncmp(environ[i], "PATH=", 5) == 0)
@@ -25,6 +23,9 @@ char *get_path_env(void)
 		i++;
 	}
 
+	if (path == NULL)
+		printf("PATH environment variable not found\n");
+
 	return (path);
 }
 /**
@@ -33,18 +34,17 @@ char *get_path_env(void)
  *
  * Return: void.
  */
-char *lookup_path(const char *func)
+char *lookup_path(char *func)
 {
 	char *path = get_path_env();
-	char *token = NULL;
-	char *full_path = NULL;
+	char *token = NULL, *full_path = NULL;
 	size_t len_token, len_func;
 
 	if (path == NULL)
-	{
-		printf("PATH environment variable not found\n");
 		return (NULL);
-	}
+
+	if (access(func, X_OK) == 0)
+		return (func);
 
 	token = strtok(path, ":");
 	while (token != NULL)
