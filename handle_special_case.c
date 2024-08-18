@@ -12,13 +12,13 @@ int handle_special_cases(char *buf, ssize_t buf_len)
 {
 	if (buf_len == EOF)
 	{
-		free(buf);
+		free (buf);
 		printf("\n");
-		return (0);
+		exit(0);
 	}
 
 	if (buf_len == 1 && buf[0] == '\n')
 		return (0);
-
+	
 	return (0);
 }
