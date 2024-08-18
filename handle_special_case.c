@@ -10,21 +10,18 @@
 */
 int handle_special_cases(char *buf, ssize_t buf_len)
 {
-
 	if (buf_len == EOF)
 	{
 		free(buf);
 		printf("\n");
-		exit(0);
+		return (0);
 	}
 
 	if (buf_len == 1 && buf[0] == '\n')
 	{
 		free(buf);
 		printf("\n");
-		exit(0);
-
+		return (0);
 	}
-
 	return (0);
 }
