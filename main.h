@@ -1,8 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-/* closedir, opendir, readdir */
-#include <dirent.h>
 
 /* fflush, perror, printf, fprintf, vfprintf, sprintf, putchar, getline */
 #include <stdio.h>
@@ -35,6 +33,5 @@ int execute(char **argv);
 char **tokenize(char *src_str, const char *separator);
 char *lookup_path(const char *func);
 char *get_path_env(void);
-int check_spaces(char *buf, ssize_t buf_len);
-
+int handle_special_cases(char *buf, ssize_t buf_len);
 #endif
