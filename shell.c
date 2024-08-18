@@ -20,7 +20,7 @@ int main(void)
 
 		buf_len = getline(&buf, &buf_size, stdin);
 
-		handle_special_cases(buf_len, buf);
+		handle_special_cases(buf, buf_len);
 
 		buf[buf_len - 1] = '\0';
 
