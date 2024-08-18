@@ -26,10 +26,5 @@ int handle_special_cases(char *buf, ssize_t buf_len)
 
 	}
 
-	/* if (check_spaces(buf, buf_len) == 0) 
-		{
-			free(buff);
-			printf("\n");
-			exit(0);
-	*/
+	return (0);
 }
