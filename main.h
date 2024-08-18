@@ -29,9 +29,11 @@
 /* whole library is allowed */
 #include <string.h>
 
+extern char **environ;
+
 int execute(char **argv);
 char **tokenize(char *src_str, const char *separator);
-char *lookup_path(const char *func);
+char *lookup_path(char *func);
 char *get_path_env(void);
 int handle_special_cases(char *buf, ssize_t buf_len);
 #endif
