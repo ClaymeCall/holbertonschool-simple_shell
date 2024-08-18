@@ -19,25 +19,15 @@ int main(void)
 			printf("$ ");
 
 		buf_len = getline(&buf, &buf_size, stdin);
-	
-		handle_err(buf_len, buf);
+
+		handle_special_cases(buf_len, buf);
+
+		buf[buf_len - 1] = '\0';
+
+		while ( buf[0] == ' ' || buf[0] == '\t')
+			buf++;
 
 		lookup_path(buf);
-
-		/*
-		if (buf_len == EOF)
-		{
-			free(buf);
-			printf("\n");
-			exit(0);
-		}
-
-		if (buf_len == 1 && buf[0] == '\n')
-			continue;
-
-		if (check_spaces(buf, buf_len) == 0)
-			continue;
-		*/
 
 		argv = tokenize(buf, " ");
 
