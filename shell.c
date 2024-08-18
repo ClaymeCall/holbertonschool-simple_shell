@@ -19,7 +19,12 @@ int main(void)
 			printf("$ ");
 
 		buf_len = getline(&buf, &buf_size, stdin);
+	
+		handle_err(buf_len, buf);
 
+		lookup_path(buf);
+
+		/*
 		if (buf_len == EOF)
 		{
 			free(buf);
@@ -27,22 +32,15 @@ int main(void)
 			exit(0);
 		}
 
-		if (buf_len == -1)
-		{
-			perror("getline");
-			free(buf);
-			return (1);
-		}
-
 		if (buf_len == 1 && buf[0] == '\n')
 			continue;
 
 		if (check_spaces(buf, buf_len) == 0)
 			continue;
+		*/
 
 		argv = tokenize(buf, " ");
 
-		/* maybe do this in tokenize at line for dest_src_str */
 		if (argv == NULL)
 		{
 			free(buf);
