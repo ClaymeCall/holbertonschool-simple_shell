@@ -18,7 +18,7 @@ char *get_path_env(void)
 		path = environ[i];
 		return (environ[i]);
 	}
-	
+
 	while (environ[i] != NULL)
 	{
 		if (strncmp(environ[i], "PATH=", 5) == 0)
@@ -52,8 +52,10 @@ char *lookup_path(char *func)
 		return (NULL);
 
 	if (access(func, X_OK) == 0)
+	{
+		free(path_copy);
 		return (strdup(func));
-
+	}
 	token = strtok(path_copy, ":");
 	while (token != NULL)
 	{
@@ -63,8 +65,10 @@ char *lookup_path(char *func)
 		/* Allocate memory for full_path (token + "/" + func + '\0') */
 		full_path = malloc(len_token + 1 + len_func + 1);
 		if (full_path == NULL)
+		{
+			free(path_copy);
 			return (NULL);
-
+		}
 		/* Constructing the full path */
 		strcpy(full_path, token);
 		strcat(full_path, "/");
@@ -72,11 +76,14 @@ char *lookup_path(char *func)
 
 		/* Return path if it is executable */
 		if (access(full_path, X_OK) == 0)
+		{
+			free(path_copy);
 			return (full_path);
-
+		}
 		token = strtok(NULL, ":");
+		free(full_path);
 	}
-
+	free(path_copy);
 	printf("%s: not found\n", func);
 	return (NULL);
 }
