@@ -1,5 +1,4 @@
 #include "main.h"
-#include <cstdio>
 #include <stdio.h>
 #include <unistd.h>
 
