@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdio.h>
+#include <string.h>
 
 /**
 * handle_special_cases - Handle special cases.
@@ -16,9 +17,6 @@ int handle_special_cases(char *buf, ssize_t buf_len)
 		printf("\n");
 		exit(0);
 	}
-
-	if (buf_len == 1 && buf[0] == '\n')
-		return (0);
 	
 	return (0);
 }

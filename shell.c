@@ -1,5 +1,7 @@
 #include "main.h"
 #include <stdio.h>
+#include <string.h>
+#include <time.h>
 #include <unistd.h>
 
 /**
@@ -9,7 +11,7 @@
 */
 int main(void)
 {
-	char *buf = NULL, **argv = {NULL};
+	char *buf = NULL, **argv = {NULL}, *cmd = NULL;
 	size_t buf_size = 1024;
 	ssize_t buf_len;
 
@@ -20,28 +22,33 @@ int main(void)
 
 		buf_len = getline(&buf, &buf_size, stdin);
 
-		handle_special_cases(buf, buf_len);
-
-		buf[buf_len - 1] = '\0';
-
-		while ( buf[0] == ' ' || buf[0] == '\t')
-			buf++;
-
-		lookup_path(buf);
-
-		argv = tokenize(buf, " ");
-
-		if (argv == NULL)
+		if (buf_len == EOF)
 		{
 			free(buf);
+			printf("\n");
+			exit(0);
+		}
+
+		cmd = buf;
+
+		while (cmd[0] == ' ' || cmd[0] == '\t')
+			cmd++;
+
+		if (strcmp(cmd, "\n") == 0)
+			continue;
+
+		cmd[buf_len - 1] = '\0';
+
+		argv = tokenize(lookup_path(cmd), " ");
+
+		if (argv == NULL || argv[0] == NULL)
+		{
+			free(cmd);
 			return (0);
 		}
 
-		if (execute(argv) == -1)
-		{
-			perror("Function not found");
-			return (1);
-		}
+		execute(argv);
+		free(buf);
 		free(argv);
 	}
 	return (0);

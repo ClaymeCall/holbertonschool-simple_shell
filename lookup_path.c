@@ -28,6 +28,7 @@ char *get_path_env(void)
 
 	return (path);
 }
+
 /**
  * lookup_path - Searches paths in PATH env variable to find binary location.
  * @func: function to lookup the binary file for.
@@ -66,8 +67,6 @@ char *lookup_path(char *func)
 		if (access(full_path, X_OK) == 0)
 			return (full_path);
 
-		/* Free memory if path is not executable */
-		free(full_path);
 		token = strtok(NULL, ":");
 	}
 
