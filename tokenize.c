@@ -29,7 +29,7 @@ char **tokenize(char *src_str, const char *separator)
 		token_count++;
 		token = strtok(NULL, separator);
 	}
-	free(temp_str);
+	/* free(temp_str);*/
 
 	/* Allocate memory for the destination array of strings */
 	dest_str_arr = malloc((token_count + 1) * sizeof(char *));
