@@ -23,7 +23,6 @@ int execute(char **argv)
 	if (pid == -1)
 	{
 		perror("Error");
-		free(argv);
 		_exit(-1);
 	}
 
@@ -32,7 +31,6 @@ int execute(char **argv)
 		if (execve(argv[0], argv, env) == -1)
 		{
 			perror("Execution failed");
-			free(argv);
 			_exit(-1);
 		}
 	}
