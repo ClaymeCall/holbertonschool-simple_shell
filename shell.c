@@ -1,7 +1,6 @@
 #include "main.h"
 #include <stdio.h>
 #include <string.h>
-#include <time.h>
 #include <unistd.h>
 
 /**
@@ -39,6 +38,8 @@ int main(void)
 
 		cmd[strlen(cmd) - 1] = '\0';
 
+
+		handle_special_cases(cmd);
 		argv = tokenize(lookup_path(cmd), " ");
 
 		execute(argv);
