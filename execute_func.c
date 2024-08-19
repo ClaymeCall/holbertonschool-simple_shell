@@ -1,4 +1,5 @@
 #include "main.h"
+#include <cstdio>
 #include <stdio.h>
 #include <unistd.h>
 
@@ -24,7 +25,8 @@ int execute(char **argv)
 	if (pid == -1)
 	{
 		perror("Error");
-		return (-1);
+		free(argv);
+		_exit(-1);
 	}
 
 	if (pid == 0)
@@ -32,6 +34,7 @@ int execute(char **argv)
 		if (execve(argv[0], argv, env) == -1)
 		{
 			perror("Execution failed");
+			free(argv);
 			_exit(-1);
 		}
 	}
