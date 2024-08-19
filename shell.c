@@ -16,9 +16,9 @@ int main(void)
 	ssize_t buf_len;
 
 	while (1)
-	{
+	{	
 		if (isatty(STDIN_FILENO))
-			printf("$ ");
+			printf("UwU$ ");
 
 		buf_len = getline(&buf, &buf_size, stdin);
 
@@ -37,18 +37,11 @@ int main(void)
 		if (strcmp(cmd, "\n") == 0)
 			continue;
 
-		cmd[buf_len - 1] = '\0';
+		cmd[strlen(cmd) - 1] = '\0';
 
 		argv = tokenize(lookup_path(cmd), " ");
 
-		if (argv == NULL || argv[0] == NULL)
-		{
-			free(cmd);
-			return (0);
-		}
-
 		execute(argv);
-		free(buf);
 		free(argv);
 	}
 	return (0);

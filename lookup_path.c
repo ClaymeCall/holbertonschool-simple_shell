@@ -13,6 +13,12 @@ char *get_path_env(void)
 	char *path = NULL;
 	int i = 0;
 
+	if (strncmp(environ[i] - 5, "PATH=", 5) == 0)
+	{
+		path = environ[i];
+		return (environ[i]);
+	}
+	
 	while (environ[i] != NULL)
 	{
 		if (strncmp(environ[i], "PATH=", 5) == 0)
@@ -39,15 +45,16 @@ char *lookup_path(char *func)
 {
 	char *path = get_path_env();
 	char *token = NULL, *full_path = NULL;
+	char *path_copy = strdup(path);
 	size_t len_token, len_func;
 
 	if (path == NULL)
 		return (NULL);
 
 	if (access(func, X_OK) == 0)
-		return (func);
+		return (strdup(func));
 
-	token = strtok(path, ":");
+	token = strtok(path_copy, ":");
 	while (token != NULL)
 	{
 		len_token = strlen(token);
@@ -70,6 +77,6 @@ char *lookup_path(char *func)
 		token = strtok(NULL, ":");
 	}
 
-	printf("%s: not found", func);
+	printf("%s: not found\n", func);
 	return (NULL);
 }
