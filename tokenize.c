@@ -45,6 +45,6 @@ char **tokenize(char *src_str, const char *separator)
 		token = strtok(NULL, separator);
 	}
 	dest_str_arr[i] = NULL;
-	
+
 	return (dest_str_arr);
 }

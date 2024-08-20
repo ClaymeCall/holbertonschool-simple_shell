@@ -15,22 +15,15 @@ int main(void)
 	ssize_t buf_len;
 
 	while (1)
-	{	
+	{
 		if (isatty(STDIN_FILENO))
 			printf("UwU$ ");
 
 		buf_len = getline(&buf, &buf_size, stdin);
-
 		if (buf_len == EOF)
-		{
-			free(buf);
-			/*free(argv);*/
-			printf("\n");
-			exit(0);
-		}
+			break;
 
 		cmd = buf;
-
 		while (cmd[0] == ' ' || cmd[0] == '\t')
 			cmd++;
 
@@ -43,15 +36,16 @@ int main(void)
 
 		full_path = lookup_path(cmd);
 
-		if (full_path != NULL) 
-			argv = tokenize(full_path," ");
+		if (full_path != NULL)
+			argv = tokenize(full_path, " ");
 
-		if (argv!= NULL)
+		if (argv != NULL)
 			execute(argv);
 
 		free(full_path);
 		free(argv);
 	}
-	free(argv);
-	return (0);
+	free(buf);
+	printf("\n");
+	exit(0);
 }

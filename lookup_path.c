@@ -44,9 +44,7 @@ char *get_path_env(void)
 char *lookup_path(char *func)
 {
 	char *path = get_path_env();
-	char *token = NULL, *full_path = NULL;
-	char *path_copy = strdup(path);
-	size_t len_token, len_func;
+	char *token = NULL, *full_path = NULL, *path_copy = strdup(path);
 
 	if (path == NULL)
 		return (NULL);
@@ -59,11 +57,8 @@ char *lookup_path(char *func)
 	token = strtok(path_copy, ":");
 	while (token != NULL)
 	{
-		len_token = strlen(token);
-		len_func = strlen(func);
-
 		/* Allocate memory for full_path (token + "/" + func + '\0') */
-		full_path = malloc(len_token + 1 + len_func + 1);
+		full_path = malloc(strlen(token) + 1 + strlen(func) + 1);
 		if (full_path == NULL)
 		{
 			free(path_copy);
