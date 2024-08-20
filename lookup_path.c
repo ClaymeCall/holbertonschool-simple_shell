@@ -80,8 +80,8 @@ char *lookup_path(char *func)
 			free(path_copy);
 			return (full_path);
 		}
-		token = strtok(NULL, ":");
 		free(full_path);
+		token = strtok(NULL, ":");
 	}
 	free(path_copy);
 	printf("%s: not found\n", func);

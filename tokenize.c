@@ -46,6 +46,5 @@ char **tokenize(char *src_str, const char *separator)
 	}
 	dest_str_arr[i] = NULL;
 	
-	free(src_str);
 	return (dest_str_arr);
 }

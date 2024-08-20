@@ -10,7 +10,7 @@
 */
 int main(void)
 {
-	char *buf = NULL, **argv = {NULL}, *cmd = NULL;
+	char *buf = NULL, **argv = {NULL}, *cmd = NULL, *full_path;
 	size_t buf_size = 1024;
 	ssize_t buf_len;
 
@@ -24,6 +24,7 @@ int main(void)
 		if (buf_len == EOF)
 		{
 			free(buf);
+			/*free(argv);*/
 			printf("\n");
 			exit(0);
 		}
@@ -39,10 +40,18 @@ int main(void)
 		cmd[strlen(cmd) - 1] = '\0';
 
 		handle_special_cases(cmd);
-		argv = tokenize(lookup_path(cmd), " ");
 
-		execute(argv);
+		full_path = lookup_path(cmd);
+
+		if (full_path != NULL) 
+			argv = tokenize(full_path," ");
+
+		if (argv!= NULL)
+			execute(argv);
+
+		free(full_path);
 		free(argv);
 	}
+	free(argv);
 	return (0);
 }
