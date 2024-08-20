@@ -27,7 +27,7 @@ void check_eof(ssize_t len, char *buf)
 */
 int main(void)
 {
-	char *buf = NULL, **argv = {NULL}, *cmd = NULL, *full_path;
+	char *buf = NULL, **argv = {NULL}, *cmd = NULL;
 	size_t buf_size = 1024;
 	ssize_t buf_len;
 
@@ -50,15 +50,13 @@ int main(void)
 
 		handle_special_cases(cmd);
 
-		full_path = lookup_path(cmd);
+		argv = tokenize(cmd, " ");
 
-		if (full_path != NULL)
-			argv = tokenize(full_path, " ");
+		argv[0] = lookup_path(argv[0]);
 
 		if (argv != NULL)
 			execute(argv);
 
-		free(full_path);
 		free(argv);
 	}
 	free (buf);
