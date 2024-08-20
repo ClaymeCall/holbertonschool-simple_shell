@@ -61,6 +61,6 @@ int main(void)
 		free(full_path);
 		free(argv);
 	}
-	free (buf);
+	free(buf);
 	return (0);
 }
