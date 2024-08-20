@@ -4,6 +4,23 @@
 #include <unistd.h>
 
 /**
+ * check_eof - Handles EOF
+ * @len: Size to check.
+ *
+ * Return: void
+ */
+void check_eof(ssize_t len, char *buf)
+{
+	if (len == EOF)
+	{
+	free(buf);
+		if (isatty(STDIN_FILENO))
+			printf("\n");
+	exit(0);
+	}
+}
+
+/**
 * main - Entry point function for simple shell.
 *
 * Return: 0 on success.
@@ -20,8 +37,7 @@ int main(void)
 			printf("UwU$ ");
 
 		buf_len = getline(&buf, &buf_size, stdin);
-		if (buf_len == EOF)
-			break;
+		check_eof(buf_len, buf);
 
 		cmd = buf;
 		while (cmd[0] == ' ' || cmd[0] == '\t')
@@ -45,7 +61,6 @@ int main(void)
 		free(full_path);
 		free(argv);
 	}
-	free(buf);
-	printf("\n");
-	exit(0);
+	free (buf);
+	return (0);
 }
