@@ -37,9 +37,9 @@ char *get_path_env(void)
 
 /**
  * lookup_path - Searches paths in PATH env variable to find binary location.
- * @func: function to lookup the binary file for.
+ * @func: Function to lookup the binary file for.
  *
- * Return: void.
+ * Return: Full path to the binary.
  */
 char *lookup_path(char *func)
 {

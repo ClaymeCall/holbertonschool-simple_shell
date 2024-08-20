@@ -4,9 +4,9 @@
 #include <unistd.h>
 
 /**
-* main - entry point function for simple shell.
+* main - Entry point function for simple shell.
 *
-* Return: 0 on success, -1 on failure.
+* Return: 0 on success.
 */
 int main(void)
 {

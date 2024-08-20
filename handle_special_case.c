@@ -3,11 +3,10 @@
 #include <string.h>
 
 /**
-* handle_special_cases - Handle special cases.
-* @buf: Command passed in stdin.
-* @buf_len: Size of buf.
+* handle_special_cases - Handle commands inherent to the shell.
+* @cmd: Command to execute.
 *
-* Return: 0 on sucess, 1 on failure.
+* Return: 0 on sucess.
 */
 int handle_special_cases(char *cmd)
 {

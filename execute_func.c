@@ -3,10 +3,10 @@
 #include <unistd.h>
 
 /**
- * execute - Execute the command line passed by stdin.
- * @argv: Command passed by stdin.
+ * execute - Execute a command and its arguments in a separate process.
+ * @argv: Array of strings containing the command and arguments to execute.
  *
- * Return : 0 on success, -1 on failure.
+ * Return: 0 on success, -1 or 127 on failure.
  */
 int execute(char **argv)
 {
