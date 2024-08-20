@@ -1,4 +1,4 @@
-#include "main.h"
+#include "../main.h"
 #include <stdio.h>
 
 int main(void)
@@ -7,10 +7,10 @@ int main(void)
 	char **argv = NULL;
 	char buf[] = "/bin/ls -l -a";
 
-		printf("Calling tokenize in main function");
+		printf("Calling tokenize in main function\n");
 	argv = tokenize(buf, " ");
 
-		printf("Entering test main while");
+		printf("Entering test main while\n");
 	while (argv[i])
 	{
 		printf("%s\n", argv[i]);
