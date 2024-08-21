@@ -57,6 +57,7 @@ int main(void)
 		if (argv != NULL)
 			execute(argv);
 
+		free(argv[0]);
 		free(argv);
 	}
 	free (buf);
