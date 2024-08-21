@@ -49,7 +49,7 @@ int main(void)
 
 		cmd[strlen(cmd) - 1] = '\0';
 
-		handle_special_cases(cmd);
+		handle_special_cases(cmd, buf);
 
 		argv = tokenize(cmd, " \t");
 
