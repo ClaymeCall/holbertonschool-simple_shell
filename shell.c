@@ -50,7 +50,7 @@ int main(void)
 
 		handle_special_cases(cmd);
 
-		argv = tokenize(cmd, " ");
+		argv = tokenize(cmd, " \t");
 
 		argv[0] = lookup_path(argv[0]);
 
@@ -60,6 +60,6 @@ int main(void)
 		free(argv[0]);
 		free(argv);
 	}
-	free (buf);
+	free(buf);
 	return (0);
 }
