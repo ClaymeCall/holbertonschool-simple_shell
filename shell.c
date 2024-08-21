@@ -14,10 +14,10 @@ void check_eof(ssize_t len, char *buf)
 {
 	if (len == EOF)
 	{
-	free(buf);
+		free(buf);
 		if (isatty(STDIN_FILENO))
 			printf("\n");
-	exit(0);
+		exit(0);
 	}
 }
 
@@ -28,7 +28,7 @@ void check_eof(ssize_t len, char *buf)
 */
 int main(void)
 {
-	char *buf = NULL, **argv = {NULL}, *cmd = NULL;
+	char *buf = NULL, **argv = {NULL}, *cmd = NULL, *full_path = NULL;
 	size_t buf_size = 1024;
 	ssize_t buf_len;
 
@@ -53,12 +53,15 @@ int main(void)
 
 		argv = tokenize(cmd, " \t");
 
-		argv[0] = lookup_path(argv[0]);
+		full_path = lookup_path(argv[0]);
+		if (full_path != NULL)
+			argv[0] = full_path;
 
 		if (argv != NULL)
 			execute(argv);
 
-		free(argv[0]);
+		if (full_path != NULL)
+			free(argv[0]);
 		free(argv);
 	}
 	free(buf);

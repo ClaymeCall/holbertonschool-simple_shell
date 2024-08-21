@@ -9,7 +9,6 @@
  *
  * Return: Pointer to dest array of strings.
  */
-
 char **tokenize(char *src_str, const char *separator)
 {
 	char *token;
