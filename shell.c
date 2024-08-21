@@ -6,6 +6,7 @@
 /**
  * check_eof - Handles EOF
  * @len: Size to check.
+ * @buf: Buffer to free in case of EOF.
  *
  * Return: void
  */
