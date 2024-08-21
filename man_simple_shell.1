@@ -1,0 +1,84 @@
+.TH SIMPLE_SHELL "August 2024" "1.0" "User Commands"
+.SH NAME
+hsh
+.SH SYNOPSIS
+.nf
+#include "main.h"
+.br
+int main(void);
+.fi
+.SH DESCRIPTION
+This project is a simple shell program created as the final project of the first trimester at Holberton School. The shell, named hsh, replicates basic functionalities of a Unix shell, including command execution, path searching, and error handling. The program is designed to read commands from the standard input, tokenize them, execute them in a child process, and handle errors. It also supports executing commands both with absolute paths and by searching the PATH environment variable.
+.SH FUNCTION PROTOTYPES
+.nf
+void check_eof(ssize_t len, char *buf);
+.br
+char **tokenize(char *src_str, const char *separator);
+.br
+char *get_path_env(void);
+.br
+char *lookup_path(char *func);
+.br
+int handle_special_cases(char *cmd);
+.br
+int execute(char **argv);
+.fi
+.SH LIBRARY
+#include <stdio.h>
+.br
+#include <unistd.h>
+.br
+#include <stdlib.h>
+.br
+#include <sys/types.h>
+.br
+#include <sys/stat.h>
+.br
+#include <fcntl.h>
+.br
+#include <sys/wait.h>
+.br
+#include <string.h>
+.fi
+.SH ENVIRONMENT
+.SH FORMAT
+Users can enter commands and arguments separated by spaces. The shell interprets the command, searches for the executable in the system's PATH, and runs it with the provided arguments.
+.SH BUILT-IN COMMANDS
+.TP
+\fBexit\fP
+Exits the shell.
+.TP
+\fBenv\fP
+Prints the current environment variables.
+.SH EXAMPLES
+.PH
+Here are examples of the shell being used for basic commands:
+
+Using an absolute path to call a command:
+
+$ ./hsh
+.br
+UwU$ /bin/ls
+.br
+This will list the contents of the current directory by calling the ls command using its absolute path.
+
+Using a command without an absolute path:
+
+$ ./hsh
+.br
+UwU$ ls
+.br
+The shell will search for ls in the PATH and execute it.
+
+Using a pipe and echo to execute a command:
+
+$ echo "/bin/ls -la" | ./hsh
+.br
+This will pipe the command "/bin/ls -la" into the shell.
+.br
+Which will then execute it, listing all files in the current directory in long format.
+.SH BUGS
+No known bugs.
+.br
+.SH AUTHORS
+Clément Callejon, Ezanic Maël
