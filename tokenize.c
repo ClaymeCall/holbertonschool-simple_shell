@@ -9,41 +9,30 @@
  *
  * Return: Pointer to dest array of strings.
  */
-
 char **tokenize(char *src_str, const char *separator)
 {
+	char *token;
 	int i = 0;
-	int token_count = 0;
-	char **dest_str_arr = NULL;
-	char *token, temp_str[1024];
+	char **dest_str_arr = malloc(1024 * sizeof(char *));
 
-	/* Check for NULL passed arguments */
-	if (src_str == NULL || separator == NULL)
-		return (NULL);
-
-	/* Calculate the number of tokens */
-	strcpy(temp_str, src_str);
-	token = strtok(temp_str, separator);
-	while (token != NULL)
-	{
-		token_count++;
-		token = strtok(NULL, separator);
-	}
-
-	strcpy(temp_str, src_str);
-	/* Allocate memory for the destination array of strings */
-	dest_str_arr = malloc((token_count + 1) * sizeof(char *));
 	if (dest_str_arr == NULL)
-		return (NULL);
+	{
+		perror("malloc");
+		exit(EXIT_FAILURE);
+	}
 
-	/* Tokenize the string and store the tokens in the array */
-	token = strtok(temp_str, separator);
+	/* Tokenize the source string inside of the array */
+	token = strtok(src_str, separator);
 	while (token != NULL)
 	{
-		dest_str_arr[i] = token;
-		i++;
+		if (strlen(token) > 0)
+		{
+			dest_str_arr[i] = token;
+			++i;
+		}
 		token = strtok(NULL, separator);
 	}
+	/* End the array with a NULL pointer */
 	dest_str_arr[i] = NULL;
 
 	return (dest_str_arr);

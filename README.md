@@ -66,7 +66,7 @@ Our testing process is designed to ensure the robustness and correctness of the 
 2. **Memory Leak Testing**:
    - To ensure there were no memory leaks in our shell program, we used the following command:
      ```bash
-     $ valgrind --leak-check=full ./hsh
+     valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes ./hsh
      ```
 
 3. **Unit Testing**:

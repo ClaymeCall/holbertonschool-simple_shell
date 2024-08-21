@@ -6,6 +6,7 @@
 /**
  * check_eof - Handles EOF
  * @len: Size to check.
+ * @buf: Buffer to free in case of EOF.
  *
  * Return: void
  */
@@ -13,10 +14,10 @@ void check_eof(ssize_t len, char *buf)
 {
 	if (len == EOF)
 	{
-	free(buf);
+		free(buf);
 		if (isatty(STDIN_FILENO))
 			printf("\n");
-	exit(0);
+		exit(0);
 	}
 }
 
@@ -27,7 +28,7 @@ void check_eof(ssize_t len, char *buf)
 */
 int main(void)
 {
-	char *buf = NULL, **argv = {NULL}, *cmd = NULL, *full_path;
+	char *buf = NULL, **argv = {NULL}, *cmd = NULL, *full_path = NULL;
 	size_t buf_size = 1024;
 	ssize_t buf_len;
 
@@ -50,15 +51,17 @@ int main(void)
 
 		handle_special_cases(cmd);
 
-		full_path = lookup_path(cmd);
+		argv = tokenize(cmd, " \t");
 
+		full_path = lookup_path(argv[0]);
 		if (full_path != NULL)
-			argv = tokenize(full_path, " ");
+			argv[0] = full_path;
 
 		if (argv != NULL)
 			execute(argv);
 
-		free(full_path);
+		if (full_path != NULL)
+			free(argv[0]);
 		free(argv);
 	}
 	free(buf);
