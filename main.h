@@ -35,7 +35,7 @@ int execute(char **argv);
 char **tokenize(char *src_str, const char *separator);
 char *lookup_path(char *func);
 char *get_path_env(void);
-int handle_special_cases(char *cmd);
+int handle_special_cases(char *cmd, char *buf);
 void check_eof(ssize_t len, char *buf);
 
 #endif
