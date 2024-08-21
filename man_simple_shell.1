@@ -41,6 +41,7 @@ int execute(char **argv);
 #include <string.h>
 .fi
 .SH ENVIRONMENT
+external char **environ;
 .SH FORMAT
 Users can enter commands and arguments separated by spaces. The shell interprets the command, searches for the executable in the system's PATH, and runs it with the provided arguments.
 .SH BUILT-IN COMMANDS
