@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 
 /**
 * handle_special_cases - Handle commands inherent to the shell.
@@ -11,8 +12,7 @@
 */
 int handle_special_cases(char *cmd, char *buf)
 {
-	char **env;
-	char *this_env;
+	int i;
 
 	if (strcmp(cmd, "exit") == 0)
 	{
@@ -22,11 +22,8 @@ int handle_special_cases(char *cmd, char *buf)
 
 	if (strcmp(cmd, "env") == 0)
 	{
-		for (env = environ; *env != 0; env++)
-		{
-			this_env = *env;
-			printf("%s\n", this_env);
-		}
+		for (i = 0; environ[i] != NULL; i++)
+			printf("%s\n", environ[i]);
 	}
 
 	return (0);
